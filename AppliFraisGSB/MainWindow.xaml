@@ -27,7 +27,7 @@
         <PasswordBox Grid.Column="1" Grid.Row="3" Name="textPassword" Style="{StaticResource MaterialDesignOutlinedPasswordFieldPasswordBox}" materialDesign:HintAssist.Hint="Mot de passe" >
 
         </PasswordBox>
-        <Button Content="Se connecter" Grid.Column="1" HorizontalAlignment="Center" Margin="37,29,37,0" Grid.Row="4" VerticalAlignment="Top" Width="126" Click="Button_Click" RenderTransformOrigin="0.206,0.865" />
+        <Button Content="Se connecter" Grid.Column="1" HorizontalAlignment="Center" Margin="37,29,37,0" Grid.Row="4" VerticalAlignment="Top" Width="126" Click="ButtonConnexion" RenderTransformOrigin="0.206,0.865" />
         <Image Grid.Column="1" HorizontalAlignment="Center" Height="100" Margin="10,16,0,0" VerticalAlignment="Top" Width="180" Source="ressources/gsb.png" />
     </Grid>
 </Window>

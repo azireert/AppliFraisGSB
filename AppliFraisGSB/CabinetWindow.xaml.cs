@@ -20,11 +20,15 @@ namespace AppliFraisGSB
     /// </summary>
     public partial class CabinetWindow : Window
     {
-        string connectionString = "SERVER=localhost;DATABASE=appli_frais;UID=root;PASSWORD=;";
+        string connectionString = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
         public CabinetWindow()
         {
             InitializeComponent();
             dgUsers.ItemsSource = this.GetListCabinet();
+            this.SetListRegion();
+            this.SetListDepartement();
+   
+           
 
         }
 
@@ -83,7 +87,12 @@ namespace AppliFraisGSB
                 Cabinet selectedClient = (Cabinet)dgUsers.SelectedItem;
                 id.Text = selectedClient.IdCabinet.ToString();
                 adresse.Text = selectedClient.Adresse;
-                coordonnees.Text = selectedClient.Coordonnees;
+                region.Text = selectedClient.Region;
+                departement.Text = selectedClient.Departement;
+                commune.Text = selectedClient.Commune;
+                code_postal.Text = selectedClient.CodePostal;
+                lat.Text = selectedClient.Lat;
+                lng.Text = selectedClient.Lng;
             }
 
         }
@@ -97,7 +106,7 @@ namespace AppliFraisGSB
             MySqlDataReader read = cmd.ExecuteReader();
             while (read.Read())
             {
-                cabinets.Add(new Cabinet((int)read["id_cabinet"],read["adresse"].ToString(), read["coordonnees"].ToString()));
+                cabinets.Add(new Cabinet((int)read["id_cabinet"],read["adresse"].ToString(), read["lat"].ToString(), read["lng"].ToString(), read["region"].ToString(), read["departement"].ToString(), read["commune"].ToString(), read["code_postal"].ToString()));
             }
             connection.Close();
             return cabinets;
@@ -105,13 +114,18 @@ namespace AppliFraisGSB
 
         private void CreateCabinet(object sender, RoutedEventArgs e)
         {
-            Cabinet cabinet = new Cabinet(adresse.Text, coordonnees.Text);
+            Cabinet cabinet = new Cabinet(adresse.Text, lat.Text, lng.Text, region.Text, departement.Text, commune.Text, code_postal.Text);
             try
             {
                 MySqlConnection connection = new MySqlConnection(connectionString);
-                MySqlCommand cmd = new MySqlCommand("INSERT INTO cabinet(adresse, coordonnees) VALUES (@adresse, @coordonnees);", connection);
+                MySqlCommand cmd = new MySqlCommand("INSERT INTO cabinet(adresse, region, departement, commune, code_postal, lat, lng) VALUES (@adresse, @region, @departement, @commune, @code_postal, @lat, @lng);", connection);
                 cmd.Parameters.AddWithValue("@adresse", cabinet.Adresse);
-                cmd.Parameters.AddWithValue("@coordonnees", cabinet.Coordonnees);
+                cmd.Parameters.AddWithValue("@region", cabinet.Region);
+                cmd.Parameters.AddWithValue("@departement", cabinet.Departement);
+                cmd.Parameters.AddWithValue("@commune", cabinet.Commune);
+                cmd.Parameters.AddWithValue("@code_postal", cabinet.CodePostal);
+                cmd.Parameters.AddWithValue("@lat", cabinet.Lat);
+                cmd.Parameters.AddWithValue("@lng", cabinet.Lng);
 
 
                 connection.Open();
@@ -139,10 +153,15 @@ namespace AppliFraisGSB
         {
             
             MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand("UPDATE cabinet set adresse = @adresse, coordonnees = @coordonnees WHERE id_cabinet = @id", connection);
-            cmd.Parameters.AddWithValue("@adresse", adresse.Text);
-            cmd.Parameters.AddWithValue("@coordonnees", coordonnees.Text);
+            MySqlCommand cmd = new MySqlCommand("UPDATE cabinet set adresse = @adresse, region = @region, departement = @departement, commune = @commune, code_postal = @code_postal, lat = @lat, lng = @lng WHERE id_cabinet = @id", connection);
             cmd.Parameters.AddWithValue("@id", id.Text);
+            cmd.Parameters.AddWithValue("@adresse", adresse.Text);
+            cmd.Parameters.AddWithValue("@region", region.Text);
+            cmd.Parameters.AddWithValue("@departement", departement.Text);
+            cmd.Parameters.AddWithValue("@commune", commune.Text);
+            cmd.Parameters.AddWithValue("@code_postal", code_postal.Text);
+            cmd.Parameters.AddWithValue("@lat", lat.Text);
+            cmd.Parameters.AddWithValue("@lng", lng.Text);
 
 
             connection.Open();
@@ -160,14 +179,44 @@ namespace AppliFraisGSB
 
         }
 
+        private void SetListRegion()
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand cmd = new MySqlCommand("SELECT Reg_Nom FROM region;", connection);
+            connection.Open();
+            MySqlDataReader read = cmd.ExecuteReader();
+            while (read.Read())
+            {
+                region.Items.Add(read["Reg_Nom"]);
+            }
 
+            connection.Close();
+        }
 
+        private void SetListDepartement()
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            MySqlCommand cmd = new MySqlCommand("SELECT Dpt_Nom FROM departement;", connection);
+            connection.Open();
+            MySqlDataReader read = cmd.ExecuteReader();
+            while (read.Read())
+            {
+                departement.Items.Add(read["Dpt_Nom"]);
+            }
+
+            connection.Close();
+        }
 
 
         private void ResetForm()
         {
             adresse.Text = "";
-            coordonnees.Text = "";
+            region.Text = "";
+            departement.Text = "";
+            commune.Text = "";
+            code_postal.Text = "";
+            lat.Text = "";
+            lng.Text = "";
         }
     }
 

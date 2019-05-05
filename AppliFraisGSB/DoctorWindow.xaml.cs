@@ -20,7 +20,7 @@ namespace AppliFraisGSB
     /// </summary>
     public partial class DoctorWindow : Window
     { 
-        string connectionString = "SERVER=localhost;DATABASE=appli_frais;UID=root;PASSWORD=;";
+        string connectionString = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
         
 
         public DoctorWindow()

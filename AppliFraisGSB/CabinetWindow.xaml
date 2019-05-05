@@ -38,10 +38,14 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Code" Binding="{Binding IdCabinet}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Adresse" Binding="{Binding Adresse}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Coordonnées" Binding="{Binding Coordonnees}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Region" Binding="{Binding Region}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Departement" Binding="{Binding Departement}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Commune" Binding="{Binding Commune}" IsReadOnly="True" />
+                <DataGridTextColumn Header="CodePostal" Binding="{Binding CodePostal}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Latitude" Binding="{Binding Lat}" IsReadOnly="True" />
+                <DataGridTextColumn Header="Longitude" Binding="{Binding Lng}" IsReadOnly="True" />
                 
-                
-
+   
             </DataGrid.Columns>
         </DataGrid>
         <materialDesign:DialogHost Name="DialogCabinet" HorizontalAlignment="Center" VerticalAlignment="Center" IsOpen="False" Grid.Column="1" Grid.Row="1">
@@ -51,6 +55,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
                         <RowDefinition Height="30"></RowDefinition>
@@ -73,13 +80,33 @@
                         x:Name="adresse"
                         materialDesign:HintAssist.Hint="Adresse">
                     </TextBox>
-                    <TextBox  HorizontalAlignment="Center" Height="23" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"
-                        x:Name="coordonnees"
-                        materialDesign:HintAssist.Hint="Coordonnées">
+                    <ComboBox  HorizontalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalAlignment="Top" Width="120"
+                        Name="region"
+                        materialDesign:HintAssist.Hint="Region">
+                    </ComboBox>
+                    <ComboBox  HorizontalAlignment="Center" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" Width="120"
+                        Name="departement"
+                        materialDesign:HintAssist.Hint="Departement">
+                    </ComboBox>
+                    <TextBox  HorizontalAlignment="Center" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Width="120"
+                        Name="commune"
+                        materialDesign:HintAssist.Hint="Commune">
+                    </TextBox>
+                    <TextBox  HorizontalAlignment="Center" Grid.Row="6" Grid.Column="1" MaxLength="5" VerticalAlignment="Top" Width="120"
+                        Name="code_postal"
+                        materialDesign:HintAssist.Hint="Code Postal">
+                    </TextBox>
+                    <TextBox  HorizontalAlignment="Center" Height="23" Grid.Row="7" Grid.Column="1" VerticalAlignment="Top" Width="120"
+                        x:Name="lat"
+                        materialDesign:HintAssist.Hint="Latitude">
+                    </TextBox>
+                    <TextBox  HorizontalAlignment="Center" Height="23" Grid.Row="8" Grid.Column="1" VerticalAlignment="Top" Width="120"
+                        x:Name="lng"
+                        materialDesign:HintAssist.Hint="Longitude">
                     </TextBox>
                     
-                    <Button Content="Ajouter" HorizontalAlignment="Center" Name="ButtonCreate"  Grid.Row="7" Grid.Column="1" VerticalAlignment="Bottom" Width="117" Height="25" Click="CreateCabinet" Visibility="Hidden" />
-                    <Button Content="Modifier" Name="ButtonUpdate"  HorizontalAlignment="Center"  Grid.Row="7" Grid.Column="1" VerticalAlignment="Bottom" Width="117" Height="25" Click="UpdateCabinet" Visibility="Hidden" />
+                    <Button Content="Ajouter" HorizontalAlignment="Center" Name="ButtonCreate"  Grid.Row="10" Grid.Column="1" VerticalAlignment="Bottom" Width="117" Height="25" Click="CreateCabinet" Visibility="Hidden" />
+                    <Button Content="Modifier" Name="ButtonUpdate"  HorizontalAlignment="Center"  Grid.Row="10" Grid.Column="1" VerticalAlignment="Bottom" Width="117" Height="25" Click="UpdateCabinet" Visibility="Hidden" />
                     <Button
                         Style="{DynamicResource MaterialDesignFloatingActionMiniButton}"
                         materialDesign:ShadowAssist.ShadowDepth="Depth1" Grid.Column="0" Click="Button_Close" Grid.Row="1" Width="30" Height="30">

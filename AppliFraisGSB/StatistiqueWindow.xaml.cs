@@ -23,7 +23,7 @@ namespace AppliFraisGSB
     /// </summary>
     public partial class StatistiqueWindow : Window
     {
-        string connectionString = "SERVER=localhost;DATABASE=appli_frais;UID=root;PASSWORD=;";
+        string connectionString = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
         public StatistiqueWindow()
         {
             InitializeComponent();

@@ -48,7 +48,7 @@ namespace AppliFraisGSB
 
         private void CheckUser()
         {
-            string connectionString = "SERVER=localhost;DATABASE=appli_frais;UID=root;PASSWORD=;";
+            string connectionString = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
             MySqlConnection connection = new MySqlConnection(connectionString);
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM secretaire;", connection);
             connection.Open();
@@ -82,7 +82,7 @@ namespace AppliFraisGSB
 
         }
 
-        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ButtonConnexion(object sender, System.Windows.RoutedEventArgs e)
         {
             this.CheckUser();
         }
