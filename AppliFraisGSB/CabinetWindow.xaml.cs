@@ -20,7 +20,7 @@ namespace AppliFraisGSB
     /// </summary>
     public partial class CabinetWindow : Window
     {
-        string connectionString = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
+        string connectionString = AppContextUtility.ConnexionBDD;
         public CabinetWindow()
         {
             InitializeComponent();

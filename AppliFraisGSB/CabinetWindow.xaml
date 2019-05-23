@@ -6,7 +6,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:AppliFraisGSB"
         mc:Ignorable="d"
-        Title="CabinetWindow" Height="450" Width="800">
+        Title="CabinetWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="75"/>

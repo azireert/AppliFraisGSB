@@ -48,7 +48,7 @@ namespace AppliFraisGSB
 
         private void CheckUser()
         {
-            string connectionString = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
+            string connectionString = AppContextUtility.ConnexionBDD;
             MySqlConnection connection = new MySqlConnection(connectionString);
             MySqlCommand cmd = new MySqlCommand("SELECT * FROM secretaire;", connection);
             connection.Open();
@@ -56,7 +56,7 @@ namespace AppliFraisGSB
             while (read.Read())
             {
                 this.SetUser("secretaire", read, (int)read["id_secretaire"]);
-             }
+            }
 
             connection.Close();
 

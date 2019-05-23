@@ -20,7 +20,7 @@ namespace AppliFraisGSB
     /// </summary>
     public partial class VisiteWindow : Window
     {
-        string connectionString = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
+        string connectionString = AppContextUtility.ConnexionBDD;
         public VisiteWindow()
         {
             InitializeComponent();
