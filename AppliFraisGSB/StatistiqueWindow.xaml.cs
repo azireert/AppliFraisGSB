@@ -130,7 +130,7 @@ namespace AppliFraisGSB
 
             if (AppContextUtility.Role == "medecin")
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT count(*) as nbvisite FROM visites WHERE id_medecin = @id_medecin ;", connection);
+                MySqlCommand cmd = new MySqlCommand("SELECT count(*) as nbvisite FROM visites WHERE id_medecin = @id_medecin AND DAY(heureDebutEntr) = DAY(NOW()) ;", connection);
                 cmd.Parameters.AddWithValue("@id_medecin", AppContextUtility.Id);
                 connection.Open();
                 MySqlDataReader read = cmd.ExecuteReader();
@@ -143,7 +143,7 @@ namespace AppliFraisGSB
             }
             if (AppContextUtility.Role == "visiteur")
             {
-                MySqlCommand cmd = new MySqlCommand("SELECT count(*) as nbvisite FROM visites WHERE id_visiteur = @id_visiteur ;", connection);
+                MySqlCommand cmd = new MySqlCommand("SELECT count(*) as nbvisite FROM visites WHERE id_visiteur = @id_visiteur AND DAY(heureDebutEntr) = DAY(NOW()) ;", connection);
                 cmd.Parameters.AddWithValue("@id_visiteur", AppContextUtility.Id);
                 connection.Open();
                 MySqlDataReader read = cmd.ExecuteReader();
