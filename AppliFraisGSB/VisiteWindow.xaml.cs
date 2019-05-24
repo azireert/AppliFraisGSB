@@ -97,11 +97,27 @@ namespace AppliFraisGSB
             
         }
 
+        private string checkRole()
+        {
+            switch (AppContextUtility.Role)
+            {
+                case "medecin":
+                    return "SELECT * FROM visites WHERE id_medecin = "+AppContextUtility.Id.ToString()+";";
+                    break;
+                case "visiteur":
+                    return "SELECT * FROM visites WHERE id_visiteur = " + AppContextUtility.Id.ToString() + ";";
+                    break;
+                default:
+                    return "SELECT * FROM visites;";
+                    break;
+            }
+        }
+
         private List<Visite> GetListVisite()
         {
             List<Visite> visites = new List<Visite>();
             MySqlConnection connection = new MySqlConnection(connectionString);
-            MySqlCommand cmd = new MySqlCommand("SELECT * FROM visites;", connection);
+            MySqlCommand cmd = new MySqlCommand(this.checkRole(), connection);
             connection.Open();
             MySqlDataReader read = cmd.ExecuteReader();
             while (read.Read())

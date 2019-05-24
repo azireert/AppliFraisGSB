@@ -12,7 +12,7 @@ namespace AppliFraisGSB
         public static string Nom { get; set; }
         public static string Prenom { get; set; }
         public static int Id { get; set; }
-        public static string ConnexionBDD { get; set; } = "SERVER=192.168.0.1;DATABASE=gsb;UID=siosuiviA;PASSWORD=sio;";
+        public static string ConnexionBDD { get; set; } = "SERVER=localhost;DATABASE=gsb;UID=root;PASSWORD=;";
 
 
     }
